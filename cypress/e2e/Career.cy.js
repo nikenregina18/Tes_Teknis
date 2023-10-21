@@ -14,13 +14,12 @@ describe('Career', () => {
 
   })
 
-  it('[Bug 3 & 4 ]Email and tracking code doesnt match', () => {
-    cy.visit('https://javan.co.id')
-    cy.xpath("//a[@class='text-base text-white'][normalize-space()='Career']").click()
-
-    cy.wait(3000)
+  it('[Bug 3 & 4 ]Email and tracking code dont match', () => {
     cy.fixture('tracking').then((data)=>{
       data.forEach((trackingData) => {
+        cy.visit('https://javan.co.id')
+        cy.xpath("//a[@class='text-base text-white'][normalize-space()='Career']").click()
+        cy.wait(3000)
         cy.xpath("//button[@id='tracking-btn']").click()
         cy.xpath("//input[@id='in_id_tracking']").type(trackingData.id)
         cy.xpath("//input[@id='in_email']").type(trackingData.email)
